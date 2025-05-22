@@ -7,6 +7,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use App\Models\Wallet;
 
 class User extends Authenticatable
 {
@@ -19,9 +20,19 @@ class User extends Authenticatable
      */
     protected $fillable = [
         'name',
+        'last_name',
+        'gender',
+        'date_birth',
         'email',
         'password',
+        'role',
     ];
+    
+    public function wallet()
+    {
+        return $this->hasOne(Wallet::class);
+    }
+    
 
     /**
      * The attributes that should be hidden for serialization.
@@ -43,3 +54,4 @@ class User extends Authenticatable
         'password' => 'hashed',
     ];
 }
+
