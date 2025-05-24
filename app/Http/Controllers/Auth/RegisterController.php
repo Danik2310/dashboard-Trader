@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
+use Carbon\Carbon;
 
 class RegisterController extends Controller
 {
@@ -66,11 +67,13 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $date = Carbon::createFromFormat('Y-m-d', $data['date_birth'])->format('Y/m/d');
+
         return User::create([
             'name' => $data['name'],
             'last_name' => $data['last_name'],
             'gender' => $data['gender'],
-            'date-birth' => $data['date_birth'],
+            'date_birth' => $date,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
         ]);

@@ -16,6 +16,23 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
-        return view('users.index', ['users' => $model->paginate(15)]);
+        return view('users.index', [
+            'users' => $model->paginate(15),
+            'pageSlug' => 'users', // <-- agrega esta línea
+        ]);
+    }
+    public function dashboard()
+    {
+        return view('dashboard', [
+            'pageSlug' => 'dashboard',
+        ]);
+    }
+
+    // Para profile
+    public function profile()
+    {
+        return view('profile.edit', [
+            'pageSlug' => 'profile',
+        ]);
     }
 }
