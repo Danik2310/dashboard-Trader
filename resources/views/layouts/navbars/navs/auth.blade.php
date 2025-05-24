@@ -18,6 +18,13 @@
         <div class="collapse navbar-collapse" id="navigation">
             <ul class="navbar-nav ml-auto">
                 <li class="search-bar input-group">
+                    @if(auth()->user() && auth()->user()->wallet)
+                        <span class="text-sm text-gray-500">
+                            ${{ number_format(auth()->user()->wallet->balance, 2) }}
+                        </span>
+                     @endif              
+                </li>
+                <li class="search-bar input-group">
                     <button class="btn btn-link" id="search-button" data-toggle="modal" data-target="#searchModal"><i class="tim-icons icon-zoom-split"></i>
                         <span class="d-lg-none d-md-block">{{ __('Search') }}</span>
                     </button>
